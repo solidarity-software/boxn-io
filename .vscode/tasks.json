@@ -8,6 +8,59 @@
       "problemMatcher": ["$tsc-watch"],
       "group": "build",
       "label": "tsc: watch - tsconfig.json"
+    },
+    {
+      "label": "Shared: Watch",
+      "type": "npm",
+      "isBackground": true,
+      "script": "watch",
+      "path": "packages/shared",
+      "problemMatcher": {
+        "owner": "custom",
+        "fileLocation": "absolute",
+        "pattern": [
+          {
+            "regexp": "(.*):(\\d*):(\\d*): (ERROR|WARNING): (.*)$",
+            "severity": 4,
+            "message": 5,
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "build started...",
+          "endsPattern": "built in"
+        }
+      }
+    },
+    {
+      "label": "Admin: Dev",
+      "type": "npm",
+      "isBackground": true,
+      "script": "dev",
+      "path": "packages/admin",
+      "dependsOn": "Shared: Watch",
+      "problemMatcher": {
+        "owner": "custom",
+        "fileLocation": "absolute",
+        "pattern": [
+          {
+            "regexp": "(.*):(\\d*):(\\d*): (ERROR|WARNING): (.*)$",
+            "severity": 4,
+            "message": 5,
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "build started...",
+          "endsPattern": "built in"
+        }
+      }
     }
   ]
 }

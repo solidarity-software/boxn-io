@@ -21,9 +21,9 @@ const typeDefs = `#graphql
   }
 `;
 
-const books = [
+export const books = [
     {
-        title: 'The Awakening!',
+        title: 'The Awakening',
         author: 'Kate Chopin',
     },
     {

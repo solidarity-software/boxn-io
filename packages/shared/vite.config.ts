@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import path from 'node:path';
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react-swc'
 import dts from 'vite-plugin-dts';
 
 
@@ -10,11 +10,14 @@ export default defineConfig({
     insertTypesEntry: true,
   }),],
   build: {
+    watch: {
+      clearScreen: true
+    },
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'MyLib',
+      name: '@boxn-io/shared',
       formats: ['es', 'umd'],
-      fileName: (format) => `my-lib.${format}.js`,
+      fileName: (format) => `lib.${format}.js`,
     },
     rollupOptions: {
       external: ['react', 'react-dom', 'styled-components'],
