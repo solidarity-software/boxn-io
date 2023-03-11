@@ -1,0 +1,33 @@
+{
+  "name": "boxn-io",
+  "version": "1.0.0",
+  "description": "Monorepo of all boxn-io code",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "husky install",
+    "watch": "tsc -b -w",
+    "test": "jest",
+    "update-refs": "workspaces-to-typescript-project-references"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solidarity-software/boxn-io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/solidarity-software/boxn-io/issues"
+  },
+  "homepage": "https://github.com/solidarity-software/boxn-io#readme",
+  "workspaces": [
+    "packages/admin",
+    "packages/backend",
+    "packages/components"
+  ],
+  "dependencies": {
+    "@monorepo-utils/workspaces-to-typescript-project-references": "^2.9.0"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3"
+  }
+}
