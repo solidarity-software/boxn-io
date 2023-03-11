@@ -1,8 +1,4 @@
 {
   "files": [],
-  "references": [
-    { "path": "packages/backend" },
-    { "path": "packages/admin" },
-    { "path": "packages/components" }
-  ]
+  "references": [{ "path": "packages/backend" }, { "path": "packages/admin" }]
 }

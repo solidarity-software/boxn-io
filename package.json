@@ -22,7 +22,7 @@
   "workspaces": [
     "packages/admin",
     "packages/backend",
-    "packages/components"
+    "packages/shared"
   ],
   "dependencies": {
     "@monorepo-utils/workspaces-to-typescript-project-references": "^2.9.0"
