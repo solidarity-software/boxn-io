@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  development:
+    privileged: true
+    network_mode: host
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sleep infinity
+    environment:
+      DISPLAY: ":14"
+      LIBGL_ALWAYS_INDIRECT: 0
+    volumes_from:
+      - x11-bridge:rw
+    depends_on:
+      - db
+      - x11-bridge
+
+  x11-bridge:
+    image: jare/x11-bridge
+
+    volumes:
+      - "/tmp/.X11-unix:/tmp/.X11-unix:rw"
+
+    ports:
+      - "8080:8080"
+
+    restart: always
+
+    environment:
+      MODE: tcp
+      XPRA_HTML: "yes"
+      DISPLAY: ":14"
+      XPRA_TCP_PORT: "8080"
+      XPRA_PASSWORD: "password"
+
+  db:
+    image: mysql:8
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_DATABASE=blank
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  db:
+    driver: local
