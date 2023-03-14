@@ -2,8 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "module": "dist/index.mjs",
   "scripts": {
+    "dev": "vite dev",
+    "build": "tsc && rm -rf dist && esbuild ./src/index.ts --outfile=dist/index.mjs --format=esm --bundle --minify --sourcemap --platform=node --target=node18 --banner:js=\"import {createRequire} from 'module';const require=createRequire(import.meta.url);\"",
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
@@ -19,12 +22,18 @@
   "homepage": "https://github.com/solidarity-software/boxn-io#readme",
   "dependencies": {
     "@apollo/server": "^4.4.1",
-    "graphql": "^16.6.0"
+    "graphql": "^16.6.0",
+    "kysely": "^0.23.5",
+    "mysql2": "^3.2.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.13",
     "@types/node": "^18.14.6",
     "@vitest/coverage-c8": "^0.29.2",
+    "esbuild": "^0.17.11",
+    "express": "^4.18.2",
     "typescript": "^4.9.5",
+    "vite-plugin-node": "^3.0.2",
     "vitest": "^0.29.2"
   }
 }

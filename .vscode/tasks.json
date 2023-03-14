@@ -2,12 +2,30 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "typescript",
-      "tsconfig": "tsconfig.json",
-      "option": "watch",
-      "problemMatcher": ["$tsc-watch"],
-      "group": "build",
-      "label": "tsc: watch - tsconfig.json"
+      "label": "Backend: Dev",
+      "type": "npm",
+      "isBackground": true,
+      "script": "dev",
+      "path": "packages/backend",
+      "problemMatcher": {
+        "owner": "custom",
+        "fileLocation": "absolute",
+        "pattern": [
+          {
+            "regexp": "(.*):(\\d*):(\\d*): (ERROR|WARNING): (.*)$",
+            "severity": 4,
+            "message": 5,
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "ready in",
+          "endsPattern": "ready in"
+        }
+      }
     },
     {
       "label": "Shared: Watch",
@@ -41,7 +59,7 @@
       "isBackground": true,
       "script": "dev",
       "path": "packages/admin",
-      "dependsOn": "Shared: Watch",
+      "dependsOn": ["Shared: Watch", "Backend: Dev"],
       "problemMatcher": {
         "owner": "custom",
         "fileLocation": "absolute",
@@ -57,8 +75,8 @@
         ],
         "background": {
           "activeOnStart": true,
-          "beginsPattern": "build started...",
-          "endsPattern": "built in"
+          "beginsPattern": "ready in",
+          "endsPattern": "ready in"
         }
       }
     }

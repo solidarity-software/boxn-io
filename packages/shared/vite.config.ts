@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => ({
       fileName: (format) => `lib.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'styled-components'],
+      external: ['react', 'react-dom', 'styled-components', 'react/jsx-runtime'],
       output: {
         globals: {
           react: 'React',
